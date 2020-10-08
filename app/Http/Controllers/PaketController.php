@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Paket;
+use Illuminate\Support\Facades\Auth;
 
 class PaketController extends Controller
 {
@@ -13,7 +15,8 @@ class PaketController extends Controller
      */
     public function index()
     {
-        $paket = Paket::all();
+        $paket = Paket::where('id_outlet', Auth::user()->id_outlet)->get();
+        
         return view('paket',['paket' => $paket]);
     }
 

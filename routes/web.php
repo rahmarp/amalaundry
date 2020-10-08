@@ -18,6 +18,7 @@ Route::get('/', function () {
 })->name('dashboard');
 Route::resource('member', 'MemberController');
 Route::resource('outlet', 'OutletController');
+Route::resource('paket', 'PaketController');
 
 Auth::routes();
 
