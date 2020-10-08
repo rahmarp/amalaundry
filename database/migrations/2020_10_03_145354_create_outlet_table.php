@@ -19,6 +19,7 @@ class CreateOutletTable extends Migration
             $table->string('alamat');
             $table->string('kota');
             $table->string('tlp');
+            $table->timestamps();
         });
     }
 

@@ -20,6 +20,7 @@ class CreatePaketTable extends Migration
             $table->enum('jenis', ['kiloan','bed_cover','selimut','karpet','dll']);
             $table->integer('harga')->length(20);
             $table->foreign('id_outlet')->references('id')->on('outlet');
+            $table->timestamps();
         });
     }
 

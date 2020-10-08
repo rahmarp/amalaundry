@@ -50,7 +50,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item @yield('dashboard')">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('dashboard') }}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -60,7 +60,7 @@
 
        <!-- Nav Item - Dashboard -->
        <li class="nav-item @yield('transaksi')">
-         <a class="nav-link" href="index.html">
+         <a class="nav-link" href="{{ route('dashboard') }}">
            <i class="fas fa-fw fa-money-check"></i>
            <span>Transaksi</span></a>
        </li>
@@ -70,7 +70,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item @yield('member')">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('member.index') }}">
           <i class="fas fa-fw fa-users"></i>
           <span>Member</span></a>
       </li>
@@ -80,7 +80,7 @@
 
        <!-- Nav Item - Dashboard -->
        <li class="nav-item @yield('outlet')">
-         <a class="nav-link" href="index.html">
+         <a class="nav-link" href="{{ route('outlet.index') }}">
            <i class="fas fa-fw fa-home"></i>
            <span>Outlet</span></a>
        </li>
@@ -90,7 +90,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item @yield('paket')">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('dashboard') }}">
           <i class="fas fa-fw fa-box-open"></i>
           <span>Paket</span></a>
       </li>
@@ -100,7 +100,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item @yield('laporan')">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('dashboard') }}">
           <i class="fas fa-fw fa-file-alt"></i>
           <span>Laporan</span></a>
       </li>

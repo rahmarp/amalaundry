@@ -13,7 +13,8 @@ class PaketController extends Controller
      */
     public function index()
     {
-        //
+        $paket = Paket::all();
+        return view('paket',['paket' => $paket]);
     }
 
     /**
@@ -23,7 +24,7 @@ class PaketController extends Controller
      */
     public function create()
     {
-        //
+        return view('addpaket');
     }
 
     /**
@@ -34,7 +35,8 @@ class PaketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $paket = Paket::create($request->all());
+        return redirect('/paket');
     }
 
     /**
@@ -56,7 +58,9 @@ class PaketController extends Controller
      */
     public function edit($id)
     {
-        //
+        $paket = Paket::all()->find($id);
+
+        return view('updatepaket', compact('paket'));
     }
 
     /**
@@ -68,7 +72,20 @@ class PaketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $id_outlet = $request->outlet;
+        $nama_paket = $request->nama;
+        $jenis = $request->jenis;
+        $harga = $request->harga;
+        
+
+        $paket = Paket::find($id);
+        $paket->id_outlet = $id_outlet;
+        $paket->nama_paket = $nama_paket;
+        $paket->jenis = $jenis;
+        $paket->harga = $harga;
+
+        $paket->save();
+        return redirect('paket');
     }
 
     /**
@@ -79,6 +96,9 @@ class PaketController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $paket = paket::find($id);
+        $paket->delete();
+
+        return redirect('paket');
     }
 }

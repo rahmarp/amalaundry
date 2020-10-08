@@ -18,7 +18,8 @@ class CreateMemberTable extends Migration
             $table->string('nik');
             $table->string('nama_member');
             $table->string('alamat_member');
-            $table->string('telp');     
+            $table->string('telp');  
+            $table->timestamps();   
          });
     }
 

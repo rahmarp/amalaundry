@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Member;
 
 class MemberController extends Controller
 {
@@ -13,7 +14,8 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+         $member = Member::all();
+         return view('member',['member' => $member]);
     }
 
     /**
@@ -23,7 +25,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return view('addmember');
     }
 
     /**
@@ -34,7 +36,8 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $member = Member::create($request->all());
+        return redirect('/member');
     }
 
     /**
@@ -56,7 +59,9 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
-        //
+        $member = Member::all()->find($id);
+
+        return view('updatemember', compact('member'));
     }
 
     /**
@@ -68,7 +73,22 @@ class MemberController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $nik = $request->nik;
+        $nama = $request->nama_member;
+        $alamat = $request->alamat_member;
+        $telp = $request->telp;
+        
+
+        $member = Member::find($id);
+        $member->nik = $nik;
+        $member->nama_member = $nama;
+        $member->alamat_member = $alamat;
+        $member->telp = $telp;
+
+        $member->save();
+        return redirect('member');
+             
     }
 
     /**
@@ -79,6 +99,9 @@ class MemberController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $member = Member::find($id);
+        $member->delete();
+
+        return redirect('member');
     }
 }

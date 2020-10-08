@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Outlet extends Model
 {
-    protected $table = 'Outlet';
+    protected $table = 'outlet';
+    protected $fillable = (['nama_outlet','alamat','kota','tlp']);
 }

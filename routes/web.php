@@ -15,4 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('dashboard');
-});
+})->name('dashboard');
+Route::resource('member', 'MemberController');
+Route::resource('outlet', 'OutletController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
