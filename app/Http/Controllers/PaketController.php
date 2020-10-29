@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Paket;
+use App\Outlet;
 use Illuminate\Support\Facades\Auth;
 
 class PaketController extends Controller
@@ -15,7 +16,15 @@ class PaketController extends Controller
      */
     public function index()
     {
-        $paket = Paket::where('id_outlet', Auth::user()->id_outlet)->get();
+        
+        if(Auth::check()){
+            if((Auth::user()->role) == 'superadmin'){
+                $paket = Paket::all();
+            }
+            else{
+                $paket = Paket::where('id_outlet', Auth::user()->id_outlet)->get();
+            }
+        }
         
         return view('paket',['paket' => $paket]);
     }
@@ -27,7 +36,15 @@ class PaketController extends Controller
      */
     public function create()
     {
-        return view('addpaket');
+        if(Auth::check()){
+            if((Auth::user()->role) == 'superadmin'){
+                $outlet = Outlet::all();
+            }
+            else{
+                $outlet = Outlet::where('id', Auth::user()->id_outlet)->get();
+            }
+        }
+        return view('addpaket',['outlet' => $outlet]);
     }
 
     /**
@@ -50,7 +67,7 @@ class PaketController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -62,8 +79,18 @@ class PaketController extends Controller
     public function edit($id)
     {
         $paket = Paket::all()->find($id);
+        if(Auth::check()){
+            if((Auth::user()->role) == 'superadmin'){
+                $outlet = Outlet::all();
+            }
+            else{
+                $outlet = Outlet::where('id', Auth::user()->id_outlet)->get();
+            }
+        }
 
-        return view('updatepaket', compact('paket'));
+        return view('updatepaket',[
+            'paket' => $paket,
+            'outlet' => $outlet]);
     }
 
     /**
@@ -76,7 +103,7 @@ class PaketController extends Controller
     public function update(Request $request, $id)
     {
         $id_outlet = $request->outlet;
-        $nama_paket = $request->nama;
+        $nama_paket = $request->nama_paket;
         $jenis = $request->jenis;
         $harga = $request->harga;
         

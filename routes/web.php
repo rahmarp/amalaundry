@@ -13,13 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-})->name('dashboard');
-Route::resource('member', 'MemberController');
-Route::resource('outlet', 'OutletController');
-Route::resource('paket', 'PaketController');
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth']], function()
+{
+    Route::get('/', 'HomeController@index')->name('dashboard');
+    Route::resource('member', 'MemberController');
+    Route::resource('outlet', 'OutletController');
+    Route::resource('paket', 'PaketController');
+    Route::resource('user','UsersController');
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('/transaction','TransactionController@index')->name('addtransaction');   
+});
