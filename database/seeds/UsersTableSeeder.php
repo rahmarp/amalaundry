@@ -20,21 +20,14 @@ class UsersTableSeeder extends Seeder
                 'role' => 'superadmin',
             ),
             array(
-                'id_outlet' => 2,
-                'name' => 'Wulan Glenna Pranoto',
-                'email' => 'admin1@email.com',
-                'password' => bcrypt('admin'),
-                'role' => 'admin',
-            ),
-            array(
-                'id_outlet' => 2,
+                'id_outlet' => 1,
                 'name' => 'Tirto Hadian Indradjaja',
                 'email' => 'owner@email.com',
                 'password' => bcrypt('admin'),
                 'role' => 'owner',
             ),
             array(
-                'id_outlet' => 2,
+                'id_outlet' => 1,
                 'name' => 'Sinta Sari Sugiarto',
                 'email' => 'kasir1@email.com',
                 'password' => bcrypt('admin'),

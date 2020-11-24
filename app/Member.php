@@ -8,4 +8,10 @@ class Member extends Model
 {
     protected $table = 'member';
     protected $fillable = (['nik','nama_member','alamat_member','telp']);
+
+    public function transactiom()
+    {
+        return $this->hasOne('App\Transaction');
+    }
+    
 }

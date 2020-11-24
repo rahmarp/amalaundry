@@ -24,8 +24,12 @@ Route::group(['middleware' => ['auth']], function()
     Route::resource('outlet', 'OutletController');
     Route::resource('paket', 'PaketController');
     Route::resource('user','UsersController');
+    Route::resource('transaction','TransactionController');
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/transaction','TransactionController@index')->name('addtransaction');   
+    // Route::get('/transaction','TransactionController@index')->name('addtransaction');   
+    // Route::post('/transaction/store','TransactionController@store')->name('transaction.store'); 
+    Route::get('/cari', 'Select2Controller@loadData');
+    Route::get('/cart/add/{id}', 'CartController@store')->name('cart.store');
 });

@@ -10899,3 +10899,27 @@ a.text-dark:focus {
   }
 }
 
+.menu {
+  display: inline-flex !important;
+}
+
+.menu-paket {
+  margin: 0;
+  padding: 0;
+}
+
+.col-container {
+  display: flex;
+  width: 100%;
+  height: 50%;
+}
+
+.col {
+  flex: 1;
+  margin-bottom: 10px;
+}
+
+.btn-paket {
+  height: 100%;
+}
+

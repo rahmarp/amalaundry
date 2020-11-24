@@ -25,7 +25,8 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" >
   <link href="{{ asset('app-assets/css/sb-admin-2.min.css') }}" type="text/css" rel="stylesheet">
   <link href="{{ asset('app-assets/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+  
 </head>
 
 <body id="page-top">
@@ -71,235 +72,243 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <div class="row">
-            
-            <div class="col-md-7">
-              <!-- DataTales Example -->
-              <div class="card shadow mb-4">
-                <div class="card-body">
-            
-                  <form action="{{ route('outlet.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                  
-                    <div class="row">
+            <div class="col-md-12">
+              <form action="{{ route('paket.store') }}" method="POST">
+                @csrf
+              <div class="row">
+                {{-- <div class="col-md-7">
+                  <!-- DataTales Example -->
+                  <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                          <div class="col-3">
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                              <a class="nav-link active" id="v-pills-kiloan-tab" data-toggle="pill" href="#v-pills-all" role="tab" aria-controls="v-pills-kiloan" aria-selected="true">Semua</a>
+                              <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-kiloan" role="tab" aria-controls="v-pills-profile" aria-selected="false">Kiloan</a>
+                              <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-bedcover" role="tab" aria-controls="v-pills-profile" aria-selected="false">Bed Cover</a>
+                              <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-selimut" role="tab" aria-controls="v-pills-messages" aria-selected="false">Selimut</a>
+                              <a class="nav-link" id="v-pills-karpet-tab" data-toggle="pill" href="#v-pills-karpet" role="tab" aria-controls="v-pills-karpet" aria-selected="false">Karpet</a>
+                              <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-dll" role="tab" aria-controls="v-pills-settings" aria-selected="false">Dll</a>
+                            </div>
+                          </div>
+                          <div class="col-9">
+                            <div class="tab-content" id="v-pills-tabContent">
+                              <div class="tab-pane fade show active" id="v-pills-all" role="tabpanel" aria-labelledby="v-pills-kiloan-tab">
+                                <div class="row">
+                                  <div class="col-md-12 overflow-auto">
+                                    <div class="row col-container">
+                                      @foreach ($paket as $p)
+                                      <div class="col-lg-3 col-6 col">                                          
+                                            <a href="{{ route('cart.store',['id' => $p->id]) }}" class="btn btn-paket btn-block btn-outline-primary">{{ $p->nama_paket }}  
+                                              <br><span class="harga">
+                                                {{ $p->harga }}</span></a>                        
+                                      </div> 
+                                      @endforeach                                  
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="tab-pane fade" id="v-pills-kiloan" role="tabpanel" aria-labelledby="v-pills-kiloan-tab">
+                                <div class="row">
+                                  <div class="col-md-12 overflow-auto">
+                                    <div class="row col-container">
+                                      @foreach ($paket as $p)
+                                      @if (($p->jenis) == "Kiloan")
+                                      <div class="col-lg-3 col-6 col">                                          
+                                            <button type="submit" class="btn btn-paket btn-block btn-outline-primary">{{ $p->nama_paket }}  
+                                              <br><span class="harga">
+                                                {{ $p->harga }}</span></button>                        
+                                      </div> 
+                                      @endif                                 
+                                      @endforeach                                  
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="tab-pane fade" id="v-pills-bedcover" role="tabpanel" aria-labelledby="v-pills-profile-tab"><div class="row">
+                                <div class="col-md-12 overflow-auto">
+                                  <div class="row col-container">
+                                    @foreach ($paket as $p)
+                                      @if (($p->jenis) == "Bed Cover")
+                                      <div class="col-md-3 col-6 col">
+                                        <button class="btn btn-paket btn-block btn-outline-primary">{{ $p->nama_paket }} <br><span class="harga">
+                                        {{ $p->harga }}</span></button>
+                                      </div>
+                                      @endif                                  
+                                      @endforeach  
+                                  </div>
+                                </div>
+                              </div></div>
+                              <div class="tab-pane fade" id="v-pills-selimut" role="tabpanel" aria-labelledby="v-pills-messages-tab"><div class="row">
+                                <div class="col-md-12 overflow-auto">
+                                  <div class="row col-container">
+                                    @foreach ($paket as $p)
+                                      @if (($p->jenis) == "Selimut")
+                                      <div class="col-md-3 col-6 col">
+                                        <button class="btn btn-block btn-outline-primary">{{ $p->nama_paket }} <br><span class="harga">
+                                        {{ $p->harga }}</span></button>
+                                      </div>
+                                      @endif                                  
+                                      @endforeach  
+                                  </div>
+                                </div>
+                              </div></div>
+                              <div class="tab-pane fade" id="v-pills-karpet" role="tabpanel" aria-labelledby="v-pills-settings-tab"><div class="row">
+                                <div class="col-md-12 overflow-auto">
+                                  <div class="row col-container">
+                                    @foreach ($paket as $p)
+                                      @if (($p->jenis) == "Karpet")
+                                      <div class="col-md-3 col-6 col">
+                                        <button class="btn btn-block btn-outline-primary">{{ $p->nama_paket }} <br><span class="harga">
+                                        {{ $p->harga }}</span></button>
+                                      </div>
+                                      @endif                                  
+                                      @endforeach  
+                                  </div>
+                                </div>
+                              </div></div>
+                              <div class="tab-pane fade" id="v-pills-dll" role="tabpanel" aria-labelledby="v-pills-settings-tab"><div class="row">
+                                <div class="col-md-12 overflow-auto">
+                                  <div class="row col-container">
+                                    @foreach ($paket as $p)
+                                      @if (($p->jenis) == "dll")
+                                      <div class="col-md-3 col-6 col">
+                                        <button class="btn btn-block btn-outline-primary">{{ $p->nama_paket }} <br><span class="harga">
+                                        {{ $p->harga }}</span></button>
+                                      </div>
+                                      @endif                                  
+                                      @endforeach  
+                                  </div>
+                                </div>
+                              </div></div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+    
+                  <div class="card shadow mb-4">
+                    <div class="card-body">
+                      
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="nama" class="col-form-label col-sm-3">Pesan</label>
+                              <div class="col-sm-9">
+                              <input type="date" class="form-control" id="tgl" name="tgl" 
+                                      value={{ $date }}required>                                                  
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group row">
+                              <label for="nama" class="col-form-label col-sm-3">Ambil</label>
+                              <div class="col-sm-9">
+                              <input type="date" class="form-control" id="tgl_ambil" name="tgl_ambil" 
+                                      value={{ $afterdate }}required>                                                  
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div> --}}
+    
+                <div class="col-md-5">
+                  <!-- DataTales Example -->
+                  <div class="card shadow mb-4">
+                    <div class="card-body">                  
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group row">
+                              <label for="nama" class="col-form-label col-sm-3">Member</label>
+                              <div class="col-sm-9">
+                                <select class="cari form-control" name="cari"></select>                                                  
+                              </div>
+                            </div>
+                            <hr>
+                            <table class="table table-borderless table-sm" width="100%" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>Paket</th>
+                                <th>Qty</th>
+                                <th>Harga</th>
+                                <th>Jumlah</th>
+                              </tr>
+                            </thead>
+                            <?php $subtotal = 0 ?>
+                            @if ($products !== null)
+                            <tbody>
+                              
+                              @foreach ($products as $id => $details)
+                              <?php
+                                $harga = \App\Paket::where(['id' => $details['id_paket']])->pluck('harga')->first();
+                                $total = $harga * $details['quantity'];
+                                $subtotal += $total;
+                              ?>
+                              <tr>
+                                <td>{{ \App\Paket::where(['id' => $details['id_paket']])->pluck('nama_paket')->first() }}</td>
+                                <td>{{ $details['quantity'] }}</td>
+                                <td>Rp.{{$harga}}</td>
+                                <td>Rp.{{ $total }}</td>
+                              </tr>
+                              @endforeach
+                            </tbody>
+                            @endif
+                          </table>
+                          <hr>
+                          <table class="table table-borderless table-sm" width="100%" cellspacing="0">
+                            <tbody>
+                              <tr>
+                                <th><div class="text-left">Total</div></th>
+                                <td><div class="col-md-11 text-right">
+                                  <input type="hidden" value="{{ $subtotal }}" name="total">
+                                   Rp.{{ $subtotal }}</div></td>
+                              </tr>
+                              <tr>
+                                <th><div class="text-left">Diskon</div></th>
+                                <td><div class="col-md-11 text-right">
+                                  <input type="hidden" value="{{ $subtotal * 0.15 }}" name="diskon">
+                                  Rp.{{ $subtotal * 0.15 }}</div></td>
+                              </tr>
+                              <tr>
+                                <th><div class="text-left">Pajak</div></th>
+                                <td><div class="col-md-11 text-right">
+                                  <input type="hidden" value="{{ $subtotal * 0.2 }}" name="diskon">
+                                  Rp.{{ $subtotal * 0.2 }}</div></td>
+                              </tr>
+                            </tbody>
+                          </table> 
+                          <div class="row">
+                            <div class="col-md-6 btn-primary btn text-left" style="border-radius: 0">Grand Total</div>
+                            <div class="col-md-5 btn-primary btn text-right" style="border-radius: 0">
+                              <input type="hidden" value="{{ ($subtotal) - ($subtotal * 0.15) + ($subtotal * 0.2) }}" name="diskon">
+                              Rp. {{ ($subtotal) - ($subtotal * 0.15) + ($subtotal * 0.2) }}</div>
+                            <div class="col-md-1 btn-primary btn" style="border-radius: 0"></div></div>
+                          </div>
+                        </div>
+                      
+                      
+                        <div class="modal-footer">
+                        <a href="{{ route('outlet.index') }}" class="btn btn-secondary">Batal</a>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="button" class="btn btn-danger">Bayar</button>
+                        </div>
                       
                     </div>
-                    <div class="row">
-                      <div class="col-3">
-                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                          <a class="nav-link active" id="v-pills-kiloan-tab" data-toggle="pill" href="#v-pills-kiloan" role="tab" aria-controls="v-pills-kiloan" aria-selected="true">Kiloan</a>
-                          <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Bed Cover</a>
-                          <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Selimut</a>
-                          <a class="nav-link" id="v-pills-karpet-tab" data-toggle="pill" href="#v-pills-karpet" role="tab" aria-controls="v-pills-karpet" aria-selected="false">Karpet</a>
-                          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Dll</a>
-                        </div>
-                      </div>
-                      <div class="col-9">
-                        <div class="tab-content" id="v-pills-tabContent">
-                          <div class="tab-pane fade show active" id="v-pills-kiloan" role="tabpanel" aria-labelledby="v-pills-kiloan-tab">
-                            <div class="row">
-                              <div class="col-md-12">
-                                <div class="row">
-                                  <div class="col-md-3">
-                                    <button class="btn btn-outline-primary">Kiloan</button>
-                                  </div>
-                                  <div class="col-md-3">
-                                    <button class="btn btn-outline-primary">Selimut</button>
-                                  </div>
-                                  <div class="col-md-3">
-                                    <button class="btn btn-outline-primary">Karpet </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"><div class="row">
-                            <div class="col-md-12">
-                              <div class="row">
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn btn-outline-primary">Bed Cover Besar</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Kiloan 1</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Selimut</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Gorden</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Karpet Masjid</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Kiloan 1</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Selimut</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Gorden</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Karpet Masjid</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div></div>
-                          <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"><div class="row">
-                            <div class="col-md-12">
-                              <div class="row">
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn btn-outline-primary">Bed Cover Besar</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Kiloan 1</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Selimut</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Gorden</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Karpet Masjid</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Kiloan 1</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Selimut</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Gorden</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Karpet Masjid</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div></div>
-                          <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab"><div class="row">
-                            <div class="col-md-12">
-                              <div class="row">
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn btn-outline-primary">Bed Cover Besar</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Kiloan 1</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Selimut</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Gorden</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Karpet Masjid</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Kiloan 1</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Selimut</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Gorden</button>
-                                </div>
-                                <div class="col-md-3 pb-3">
-                                  <button class="btn p-3 btn-outline-primary">Karpet Masjid</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div></div>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
+                  </div>
+    
+                
                 </div>
               </div>
+              </form>
             </div>
 
-            <div class="col-md-5">
-              <!-- DataTales Example -->
-              <div class="card shadow mb-4">
-                <div class="card-body">
             
-                  <form action="{{ route('outlet.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                  
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group row">
-                          <label for="nama" class="col-form-label col-sm-3">Member</label>
-                          <div class="col-sm-9">
-                          <input type="text" class="form-control" id="nama" name="nama_outlet" 
-                                  value="{{ old('nama_outlet', $post->nama_outlet ?? null) }}" required>                                                  
-                          </div>
-                        </div>
-                        <hr>
-                        <table class="table table-borderless table-sm" width="100%" cellspacing="0">
-                        <thead>
-                          <tr>
-                            <th>Paket</th>
-                            <th>Qty</th>
-                            <th>Harga</th>
-                            <th>Jumlah</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Bed Cover Besar</td>
-                            <td>1</td>
-                            <td>20000</td>
-                            <td>20000</td>
-                          </tr>
-                          <tr>
-                            <td>Karpet</td>
-                            <td>2</td>
-                            <td>15000</td>
-                            <td>30000</td>
-                          </tr>
-                          <tr>
-                            <td>Kiloan</td>
-                            <td>1</td>
-                            <td>7000</td>
-                            <td>7000</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <hr>
-                      <table class="table table-borderless table-sm" width="100%" cellspacing="0">
-                        <tbody>
-                          <tr>
-                            <th>Total</th>
-                            <td>57000</td>
-                          </tr>
-                          <tr>
-                            <th>Diskon</th>
-                            <td>5000</td>
-                          </tr>
-                          <tr>
-                            <th>Pajak</th>
-                            <td>5700</td>
-                          </tr>
-                        </tbody>
-                      </table> 
-                      <div class="row">
-                        <div class="col-md-6 btn-primary">Grand Total</div>
-                        <div class="col-md-6 btn-primary">64000</div></div>
-                      </div>
-                    </div>
-                  
-                  
-                    <div class="modal-footer">
-                    <a href="{{ route('outlet.index') }}" class="btn btn-secondary">Batal</a>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    <button type="submit" class="btn btn-danger">Bayar</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
+            
+
+            
+            
           </div>
           
           
@@ -351,6 +360,29 @@
  
    <!-- Page level custom scripts -->
    <script src="{{ asset('app-assets/js/demo/datatables-demo.js') }}"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+   <script type="text/javascript">
+     $('.cari').select2({
+       placeholder: 'Cari...',
+       ajax: {
+         url: '/cari',
+         dataType: 'json',
+         delay: 250,
+         processResults: function (data) {
+           return {
+             results:  $.map(data, function (item) {
+               return {
+                 text: item.nama_member,
+                 id: item.id
+               }
+             })
+           };
+         },
+         cache: true
+       }
+     });
+   
+   </script>   
 
 </body>
 

@@ -86,7 +86,7 @@
 
        <!-- Nav Item - Dashboard -->
        <li class="nav-item @yield('transaksi')">
-         <a class="nav-link" href="{{ route('addtransaction') }}">
+         <a class="nav-link" href="{{ route('transaction.index') }}">
            <i class="fas fa-fw fa-money-check"></i>
            <span>Transaksi</span></a>
        </li>
